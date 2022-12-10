@@ -1,0 +1,9 @@
+
+version: '3.3'
+services:
+ nest-api:
+   image: superhero
+   restart: always
+   container_name: superhero-api
+   ports:
+     - '3000:3000'

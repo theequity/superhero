@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.theequity.superhero.dto.SuperheroDto;
@@ -51,17 +50,15 @@ public class SuperheroController {
 			 return ResponseEntity.noContent().build();
 		 return ResponseEntity.ok(SuperheroMapper.MAPPER.toListSuperheroDto(superheroes));
 	}
-//	@GetMapping("/contains/{in}")
-//	public ResponseEntity<List<SuperheroDto>> getSuperheroContaninign(@RequestParam String in) {
-//		List<Superhero> superheroes = superheroService.findSuperheroContaninign(in);
-//		 if(superheroes.isEmpty())
-//			 return ResponseEntity.noContent().build();
-//		 return ResponseEntity.ok(SuperheroMapper.MAPPER.toListSuperheroDto(superheroes));
-//	}
+
 	
 	@PostMapping()
-	public Superhero createSuperhero(@RequestBody SuperheroDto superheroDto) {
-		return superheroService.createSuperhero(SuperheroMapper.MAPPER.toSuperhero(superheroDto));
+	public ResponseEntity<SuperheroDto> createSuperhero(@RequestBody SuperheroDto superheroDto) {
+		Superhero hero = superheroService.createSuperhero(SuperheroMapper.MAPPER.toSuperhero(superheroDto));
+		if(hero == null)
+			return ResponseEntity.notFound().build();
+		
+		return ResponseEntity.ok(SuperheroMapper.MAPPER.toSuperheroDto(hero));
 	}
 	
 	@PutMapping("/{superheroId}")

@@ -28,6 +28,29 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <scope>test</scope>
+</dependency>
+
+
+
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -102,16 +125,6 @@
 			<scope>test</scope>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.security</groupId>-->
-<!--			<artifactId>spring-security-crypto</artifactId>-->
-<!--		</dependency>-->
-<!---->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
-
 	</dependencies>
 
 	<build>
@@ -124,13 +137,6 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
-						<!-- See https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html -->
-						<!-- Classpath elements to supply as annotation processor path. If specified, the compiler   -->
-						<!-- will detect annotation processors only in those classpath elements. If omitted, the     -->
-						<!-- default classpath is used to detect annotation processors. The detection itself depends -->
-						<!-- on the configuration of annotationProcessors.                                           -->
-						<!--                                                                                         -->
-						<!-- According to this documentation, the provided dependency processor is not considered!   -->
 						<annotationProcessorPaths>
 							<path>
 								<groupId>org.mapstruct</groupId>
@@ -151,6 +157,20 @@
 					</configuration>
 				</plugin>
 
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>lib/</classpathPrefix>
+								<mainClass>com.theequity.superhero.SuperheroesPro1Application</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

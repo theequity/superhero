@@ -44,9 +44,11 @@ public class SuperheroServiceImpl implements SuperheroService {
 	}
 
 	
-//	@CachePut( value = "allsuperherocache",  key = "#superh.id")
+
 	@Caching(
-            put= { @CachePut(value="allsuperherocache", key="#superh.id") })
+            put= @CachePut(value="allsuperherocache"),
+            cacheable = @Cacheable(value = "allsuperherocache"))
+           
 	@Override
 	public Superhero updateSuperhero(Long id, Superhero superh) {
 		Superhero heroe = null;

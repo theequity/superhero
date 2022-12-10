@@ -19,14 +19,14 @@ public class SuperheroServiceTest {
   private SuperheroService superheroService;
 
   @MockBean
-  private SuperheroRepository bookRepository;
+  private SuperheroRepository superheroRepository;
 
   @Test
   public void testRetrieveSuperheroWithMockRepository() throws Exception {
 
     Optional<Superhero> optSuperhero = Optional.of(createSuperhero());
 
-    when(bookRepository.findById(1L)).thenReturn(optSuperhero);
+    when(superheroRepository.findById(1L)).thenReturn(optSuperhero);
 
     assert superheroService.findSuperheroById(1L).getSuperheroName().contains("Batman");
 
