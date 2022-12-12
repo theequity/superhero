@@ -27,7 +27,7 @@ public class SuperheroControllerIT {
 	private ObjectMapper objectMapper;
 
 	@Test
-	void findById() throws Exception {
+	void findBySuperHeroId() throws Exception {
 		 Superhero superhero = createSuperhero();
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/superheroes")
 				.contentType(MediaType.APPLICATION_JSON)
@@ -38,7 +38,8 @@ public class SuperheroControllerIT {
 				 .accept(MimeTypeUtils.APPLICATION_JSON_VALUE))
 				 .andExpect(status().isOk()).andReturn();
 		 Superhero supHe = objectMapper.readValue(findById.getResponse().getContentAsString(), Superhero.class);
-		assert supHe.getSuperheroName().equalsIgnoreCase("Batman");
+		
+		 assert supHe.getSuperheroName().equalsIgnoreCase("Batman");
 	}
 
 	private Superhero createSuperhero() {
