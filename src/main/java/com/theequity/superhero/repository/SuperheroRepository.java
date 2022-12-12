@@ -14,9 +14,6 @@ import com.theequity.superhero.entity.Superhero;
 @Transactional
 public interface SuperheroRepository extends JpaRepository<Superhero, Long> {
 
-
-	//public List<Superhero> findBySuperheroNameContaining(String in);
-
 	public List<Superhero> findBySuperheroNameContainingIgnoreCase(String inChart);
 
 }

@@ -12,3 +12,10 @@ logging:
     org:
       hibernate:
         type: INFO
+
+  
+security:
+  authentication:
+    jwt:
+      secret: secret   
+      expiration: 86400
