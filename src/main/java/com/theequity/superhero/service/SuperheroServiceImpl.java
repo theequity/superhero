@@ -43,8 +43,6 @@ public class SuperheroServiceImpl implements SuperheroService {
 		return superheroRepository.save(superhero);
 	}
 
-	
-
 	@Caching(
             put= @CachePut(value="allsuperherocache"),
             cacheable = @Cacheable(value = "allsuperherocache"))
@@ -80,5 +78,7 @@ public class SuperheroServiceImpl implements SuperheroService {
 	public List<Superhero> findSuperheroContaninign(String inChart) {
 		return superheroRepository.findBySuperheroNameContainingIgnoreCase(inChart);
 	}
+	
+
 
 }

@@ -54,8 +54,8 @@ public class AuthController {
 	@Autowired
 	JwtProvider jwtProvider;
 	
-	@PostMapping("/nuevo")
-	public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
+	@PostMapping("/new")
+	public ResponseEntity<?> newUser(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
 		if(bindingResult.hasErrors())
 			return new ResponseEntity(new Mensaje("Email inválido"), HttpStatus.BAD_REQUEST);
 		if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
@@ -87,7 +87,7 @@ public class AuthController {
 		String jwt = jwtProvider.generateToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(),userDetails.getAuthorities());
-		return new ResponseEntity(jwt, HttpStatus.OK);
+		return new ResponseEntity(jwtDto, HttpStatus.OK);
 		
 	}
 	

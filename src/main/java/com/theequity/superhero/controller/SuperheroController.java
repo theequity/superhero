@@ -18,6 +18,8 @@ import com.theequity.superhero.entity.Superhero;
 import com.theequity.superhero.mapper.SuperheroMapper;
 import com.theequity.superhero.service.SuperheroService;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 @RequestMapping("/api/superheroes")
@@ -26,6 +28,7 @@ public class SuperheroController {
 	@Autowired
 	private SuperheroService superheroService;
 
+	@ApiOperation("Muestra la lista con todos los superheroes")
 	@GetMapping
 	public ResponseEntity<List<SuperheroDto>> getSuperheroes() {
 		List<Superhero> superheroes = superheroService.findAllSuperheroes();
